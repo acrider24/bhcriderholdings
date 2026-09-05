@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BH Crider Holdings | Modern Family Holding Company</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            800: '#292524',
+                            900: '#1c1917',
+                            950: '#0c0a09',
+                        },
+                        sand: {
+                            50: '#fdfbf7',
+                            100: '#f7f3eb',
+                            200: '#efe6d5',
+                            300: '#e2d3b7',
+                            800: '#5c4e36',
+                            900: '#3d3322'
+                        },
+                        bronze: {
+                            500: '#a3713f',
+                            600: '#8c5d2e',
+                            700: '#734a22'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #fdfbf7;
+        }
+        .grain-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        .arch-grid {
+            background-size: 60px 60px;
+            background-image: 
+                linear-gradient(to right, rgba(28, 25, 23, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(28, 25, 23, 0.04) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="text-stone-900 font-sans antialiased selection:bg-bronze-500 selection:text-white relative">
+    
+    <div class="fixed inset-0 grain-overlay pointer-events-none z-50"></div>
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-stone-950 text-sand-200 text-xs py-2 px-6 border-b border-stone-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center font-mono uppercase tracking-widest">
+            <span class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-bronze-500 inline-block animate-pulse"></span>
+                Family Office & Enterprise Portfolio
+            </span>
+            <span class="hidden sm:inline text-stone-400">EST. GENERATIONAL STEWARDSHIP</span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-sand-50/90 backdrop-blur-md border-b border-stone-200/80 transition-all">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-9 h-9 border border-stone-900 flex items-center justify-center font-serif text-lg font-semibold text-stone-900 tracking-tighter">
+                    BH
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-base tracking-widest text-stone-950 uppercase">BH Crider</span>
+                    <span class="text-[10px] tracking-[0.2em] text-bronze-600 font-mono uppercase font-medium">Holdings</span>
+                </div>
+            </a>
+
+            <!-- Menu Links -->
+            <nav class="hidden md:flex items-center gap-10 text-xs font-semibold tracking-wider uppercase font-mono text-stone-600">
+                <a href="#overview" class="hover:text-bronze-600 transition-colors">Overview</a>
+                <a href="#strategy" class="hover:text-bronze-600 transition-colors">Capital Strategy</a>
+                <a href="#portfolio" class="hover:text-bronze-600 transition-colors">Sectors</a>
+                <a href="#governance" class="hover:text-bronze-600 transition-colors">Governance</a>
+            </nav>
+
+            <a href="#contact" class="hidden sm:inline-flex items-center gap-2 border border-stone-900 px-5 py-2.5 text-xs font-mono uppercase font-semibold text-stone-950 hover:bg-stone-950 hover:text-white transition-all duration-300">
+                <span>Inquire</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+
+            <button id="mobileNavToggle" class="md:hidden text-stone-900 p-2">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileDrawer" class="hidden md:hidden bg-sand-100 border-b border-stone-200 px-6 py-6 space-y-4 font-mono text-xs uppercase tracking-wider">
+            <a href="#overview" class="block text-stone-800 hover:text-bronze-600">Overview</a>
+            <a href="#strategy" class="block text-stone-800 hover:text-bronze-600">Capital Strategy</a>
+            <a href="#portfolio" class="block text-stone-800 hover:text-bronze-600">Sectors</a>
+            <a href="#governance" class="block text-stone-800 hover:text-bronze-600">Governance</a>
+            <a href="#contact" class="block text-center border border-stone-900 py-3 mt-4 text-stone-950 font-bold">Contact Office</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative arch-grid py-28 md:py-36 px-6 border-b border-stone-200">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+                <div class="lg:col-span-8 space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-sand-200 border border-sand-300 text-stone-800 font-mono text-[11px] tracking-wider uppercase">
+                        <i data-lucide="compass" class="w-3.5 h-3.5 text-bronze-600"></i>
+                        Private Investment Office
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-stone-950 leading-[1.08]">
+                        Curating Enduring Value Through <span class="italic font-normal text-bronze-600">Patient Capital</span>
+                    </h1>
+
+                    <p class="text-stone-600 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
+                        BH Crider Holdings is an independent, family-owned holding company focused on acquiring, developing, and stewarding market-leading enterprises and long-life assets.
+                    </p>
+
+                    <div class="pt-4 flex flex-wrap gap-4 font-mono text-xs uppercase tracking-wider">
+                        <a href="#contact" class="bg-stone-950 text-sand-50 px-7 py-4 hover:bg-bronze-600 transition-colors flex items-center gap-3">
+                            Direct Engagement
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#strategy" class="border border-stone-300 bg-sand-50 px-7 py-4 text-stone-800 hover:border-stone-900 transition-colors">
+                            Capital Pillars
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 lg:border-l lg:border-stone-200 lg:pl-10 space-y-6">
+                    <div class="p-6 bg-sand-100 border border-stone-200/80 space-y-4">
+                        <span class="font-mono text-[10px] uppercase text-bronze-600 font-bold tracking-widest block">Core Horizon</span>
+                        <div class="font-serif text-2xl font-semibold text-stone-900">Permanent Capital</div>
+                        <p class="text-xs text-stone-600 leading-relaxed">
+                            Unlike traditional private equity funds, we operate without artificial divestment deadlines. Our focus is compounding value over decades.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-center font-mono text-xs border-t border-stone-200 pt-6">
+                        <div class="p-4 bg-white border border-stone-200">
+                            <div class="text-lg font-bold text-stone-950 font-serif">100%</div>
+                            <div class="text-[10px] text-stone-500 tracking-wider uppercase mt-1">Family Owned</div>
+                        </div>
+                        <div class="p-4 bg-white border border-stone-200">
+                            <div class="text-lg font-bold text-stone-950 font-serif">Multi-Gen</div>
+                            <div class="text-[10px] text-stone-500 tracking-wider uppercase mt-1">Strategy Focus</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Summary / Overview -->
+        <section id="overview" class="py-24 px-6 bg-white border-b border-stone-200">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-stone-200 pb-8 gap-6">
+                    <div>
+                        <span class="font-mono text-xs uppercase tracking-widest text-bronze-600 block mb-2">// OVERVIEW</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl text-stone-950">A Business Model Centered on Governance</h2>
+                    </div>
+                    <p class="text-stone-500 max-w-md text-sm font-light">
+                        Combining agility with institutional rigor to support exceptional management teams and strategic asset classes.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-8 bg-sand-50 border border-stone-200 space-y-4 relative group hover:border-stone-900 transition-colors">
+                        <span class="font-mono text-xs text-stone-400">01 / STABILITY</span>
+                        <h3 class="font-serif text-xl text-stone-950 font-medium">Uncompromising Independence</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Our private capital structure allows us to make decisive, autonomous investments that align with long-term macroeconomic trends.
+                        </p>
+                    </div>
+
+                    <div class="p-8 bg-sand-50 border border-stone-200 space-y-4 relative group hover:border-stone-900 transition-colors">
+                        <span class="font-mono text-xs text-stone-400">02 / PARTNERSHIP</span>
+                        <h3 class="font-serif text-xl text-stone-950 font-medium">Collaborative Ownership</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            We empower operational leadership teams while providing strategic balance sheet support, risk management, and governance.
+                        </p>
+                    </div>
+
+                    <div class="p-8 bg-sand-50 border border-stone-200 space-y-4 relative group hover:border-stone-900 transition-colors">
+                        <span class="font-mono text-xs text-stone-400">03 / HERITAGE</span>
+                        <h3 class="font-serif text-xl text-stone-950 font-medium">Stewardship of Brand</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            We honor the legacy, culture, and relationships built by business founders, providing a respectful home for transition.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capital Strategy & Interactive Sectors -->
+        <section id="portfolio" class="py-24 px-6 bg-sand-100/60 border-b border-stone-200">
+            <div class="max-w-7xl mx-auto space-y-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <span class="font-mono text-xs uppercase tracking-widest text-bronze-600 block mb-2">// SECTOR ALLOCATION</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl text-stone-950">Investment Ecosystem</h2>
+                    </div>
+
+                    <!-- Sector Filter Controls -->
+                    <div class="flex flex-wrap gap-2 font-mono text-xs uppercase" id="filterContainer">
+                        <button onclick="filterSector('all')" class="sector-btn active px-4 py-2 border border-stone-900 bg-stone-950 text-white">All Portfolio</button>
+                        <button onclick="filterSector('realestate')" class="sector-btn px-4 py-2 border border-stone-300 bg-white text-stone-700 hover:border-stone-900">Real Estate</button>
+                        <button onclick="filterSector('equity')" class="sector-btn px-4 py-2 border border-stone-300 bg-white text-stone-700 hover:border-stone-900">Private Equity</button>
+                        <button onclick="filterSector('ventures')" class="sector-btn px-4 py-2 border border-stone-300 bg-white text-stone-700 hover:border-stone-900">Strategic Capital</button>
+                    </div>
+                </div>
+
+                <!-- Sector Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="sectorGrid">
+                    
+                    <!-- Card 1 -->
+                    <div class="sector-card realestate p-8 bg-white border border-stone-200 space-y-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center font-mono text-xs text-stone-400">
+                                <span>[ RE-01 ]</span>
+                                <span class="text-bronze-600 uppercase">Real Estate</span>
+                            </div>
+                            <h3 class="font-serif text-xl text-stone-950">Commercial & Industrial Assets</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Core and value-add real estate holdings focused on long-term cash flow resilience, premium logistics hubs, and strategic land acquisitions.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between font-mono text-xs text-stone-500">
+                            <span>Target: Prime Metro</span>
+                            <i data-lucide="layers" class="w-4 h-4 text-bronze-600"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="sector-card equity p-8 bg-white border border-stone-200 space-y-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center font-mono text-xs text-stone-400">
+                                <span>[ PE-02 ]</span>
+                                <span class="text-bronze-600 uppercase">Private Equity</span>
+                            </div>
+                            <h3 class="font-serif text-xl text-stone-950">Operating Business Buyouts</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Majority or significant minority stakes in established middle-market service, manufacturing, and distribution enterprises with strong defensibility.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between font-mono text-xs text-stone-500">
+                            <span>Focus: $5M - $50M Rev</span>
+                            <i data-lucide="trending-up" class="w-4 h-4 text-bronze-600"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="sector-card ventures p-8 bg-white border border-stone-200 space-y-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center font-mono text-xs text-stone-400">
+                                <span>[ SC-03 ]</span>
+                                <span class="text-bronze-600 uppercase">Strategic Capital</span>
+                            </div>
+                            <h3 class="font-serif text-xl text-stone-950">Co-Investment & Debt Solutions</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Custom credit, mezzanine funding, and joint venture syndications alongside like-minded family offices and trusted industry sponsors.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between font-mono text-xs text-stone-500">
+                            <span>Structure: Flexible</span>
+                            <i data-lucide="shield-check" class="w-4 h-4 text-bronze-600"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Governance & Values -->
+        <section id="governance" class="py-24 px-6 bg-stone-950 text-sand-100">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="font-mono text-xs uppercase tracking-widest text-bronze-500 block">// GOVERNANCE & ETHOS</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-normal leading-tight text-white">
+                        Guided by Principle, Measured by Legacy
+                    </h2>
+                    <p class="text-stone-400 text-sm leading-relaxed">
+                        As stewards of family capital, our primary objective is to protect reputation and nurture sustainable economic value across market environments.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="p-6 bg-stone-900 border border-stone-800 space-y-3">
+                        <i data-lucide="lock" class="w-5 h-5 text-bronze-500"></i>
+                        <h4 class="font-serif text-lg text-white">Discretion & Trust</h4>
+                        <p class="text-xs text-stone-400 leading-relaxed">
+                            We operate with complete confidentiality and highest ethical standards in all commercial dealings.
+                        </p>
+                    </div>
+
+                    <div class="p-6 bg-stone-900 border border-stone-800 space-y-3">
+                        <i data-lucide="clock" class="w-5 h-5 text-bronze-500"></i>
+                        <h4 class="font-serif text-lg text-white">Decadal Horizon</h4>
+                        <p class="text-xs text-stone-400 leading-relaxed">
+                            We measure progress in years and decades, prioritizing resilience over short-term quarterly returns.
+                        </p>
+                    </div>
+
+                    <div class="p-6 bg-stone-900 border border-stone-800 space-y-3">
+                        <i data-lucide="award" class="w-5 h-5 text-bronze-500"></i>
+                        <h4 class="font-serif text-lg text-white">Excellence</h4>
+                        <p class="text-xs text-stone-400 leading-relaxed">
+                            Demanding rigorous execution, sound financial discipline, and continual operational improvement.
+                        </p>
+                    </div>
+
+                    <div class="p-6 bg-stone-900 border border-stone-800 space-y-3">
+                        <i data-lucide="users" class="w-5 h-5 text-bronze-500"></i>
+                        <h4 class="font-serif text-lg text-white">Alignment</h4>
+                        <p class="text-xs text-stone-400 leading-relaxed">
+                            We ensure strict alignment of interest with partner founders, operators, and community stakeholders.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-6 bg-sand-50">
+            <div class="max-w-4xl mx-auto space-y-12">
+                <div class="text-center space-y-4">
+                    <span class="font-mono text-xs uppercase tracking-widest text-bronze-600 block">// DIRECT OFFICE INQUIRIES</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-stone-950">Initiate Dialogue</h2>
+                    <p class="text-stone-600 text-sm max-w-lg mx-auto">
+                        For confidential discussions regarding business acquisitions, strategic partnerships, or real estate opportunities.
+                    </p>
+                </div>
+
+                <form onsubmit="handleFormSubmit(event)" class="bg-white p-8 md:p-12 border border-stone-200 shadow-sm space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="font-mono text-[11px] uppercase tracking-wider text-stone-700">Full Name *</label>
+                            <input type="text" required class="w-full px-4 py-3 bg-sand-50 border border-stone-200 text-stone-900 text-sm focus:outline-none focus:border-stone-900">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-mono text-[11px] uppercase tracking-wider text-stone-700">Email Address *</label>
+                            <input type="email" required class="w-full px-4 py-3 bg-sand-50 border border-stone-200 text-stone-900 text-sm focus:outline-none focus:border-stone-900">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="font-mono text-[11px] uppercase tracking-wider text-stone-700">Inquiry Classification</label>
+                        <select class="w-full px-4 py-3 bg-sand-50 border border-stone-200 text-stone-900 text-sm focus:outline-none focus:border-stone-900">
+                            <option>Operating Company / PE Opportunity</option>
+                            <option>Real Estate Acquisition</option>
+                            <option>Strategic Partnership</option>
+                            <option>General Media / Other</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="font-mono text-[11px] uppercase tracking-wider text-stone-700">Confidential Message *</label>
+                        <textarea rows="4" required class="w-full px-4 py-3 bg-sand-50 border border-stone-200 text-stone-900 text-sm focus:outline-none focus:border-stone-900"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-stone-950 text-white font-mono text-xs uppercase tracking-widest hover:bg-bronze-600 transition-colors flex items-center justify-center gap-2">
+                        <span>Transmit Message</span>
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    </button>
+
+                    <div id="formAlert" class="hidden p-4 bg-stone-100 border border-stone-300 text-center font-mono text-xs text-stone-800">
+                        Inquiry received. The office will respond promptly if aligned with our focus.
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 text-stone-400 py-12 px-6 border-t border-stone-800 text-xs font-mono">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 border border-stone-700 flex items-center justify-center font-serif text-white text-xs">
+                    BH
+                </div>
+                <span class="text-stone-200 uppercase tracking-widest">BH Crider Holdings</span>
+            </div>
+
+            <div>
+                &copy; <span id="year"></span> BH Crider Holdings LLC. All rights reserved.
+            </div>
+
+            <div class="text-stone-500">
+                PRIVACY & CONFIDENTIALITY ASSURED
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Drawer
+        const toggleBtn = document.getElementById('mobileNavToggle');
+        const drawer = document.getElementById('mobileDrawer');
+        toggleBtn.addEventListener('click', () => drawer.classList.toggle('hidden'));
+
+        // Interactive Sector Filter
+        function filterSector(category) {
+            const cards = document.querySelectorAll('.sector-card');
+            const buttons = document.querySelectorAll('.sector-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-stone-950', 'text-white', 'border-stone-900');
+                btn.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+            });
+
+            event.currentTarget.classList.add('bg-stone-950', 'text-white', 'border-stone-900');
+            event.currentTarget.classList.remove('bg-white', 'text-stone-700');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const alert = document.getElementById('formAlert');
+            alert.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => alert.classList.add('hidden'), 5000);
+        }
+    </script>
+</body>
+</html>
